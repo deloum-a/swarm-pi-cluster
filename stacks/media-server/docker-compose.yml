@@ -87,8 +87,8 @@ services:
 
   jackett:
     image: linuxserver/jackett:latest
-    #ports:
-    #  - "9117:9117"
+    ports:
+      - "9117:9117"
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -112,7 +112,7 @@ services:
         - "traefik.http.routers.jackett.service=jackett"
 
   sonarr:
-    image: linuxserver/sonarr:preview
+    image: linuxserver/sonarr:latest
     #ports:
     #  - "8989:8989"
     environment:
@@ -123,7 +123,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ${HOME_DIR}/config/sonarr:/config # config files
       - ${STORAGE}/tv_shows:/tv
-      - ${STORAGE}/torrent:/downloads
+      - ${STORAGE}/torrent:/data
     networks:
       - public
     deploy:
@@ -163,7 +163,6 @@ services:
         - "traefik.http.routers.bazarr.entrypoints=web"
         - "traefik.http.services.bazarr.loadbalancer.server.port=6767"
         - "traefik.http.routers.bazarr.service=bazarr"
-
 
 networks:
   public:
