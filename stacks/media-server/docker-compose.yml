@@ -9,7 +9,6 @@ services:
   # - PGID=1000
   # - TZ=Europe/Paris
 
-
   # Deluge x VPN
   deluge:
     image: binhex/arch-delugevpn
