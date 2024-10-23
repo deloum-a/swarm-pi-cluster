@@ -1,0 +1,37 @@
+version: '3.2'
+
+services:
+  pihole:
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "8053:80/tcp"
+    environment:
+      TZ: 'Europe/Paris'
+      WEBPASSWORD: 'raspberry'
+    volumes:
+      - 'pihole-etc-pihole:/etc/pihole'
+      - 'pihole-etc-dnsmasq:/etc/dnsmasq.d'
+    networks:
+      - public
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.pihole.rule=Host(`pihole.pi-cluster.local`)"
+        - "traefik.http.routers.pihole.entrypoints=web"
+        - "traefik.http.services.pihole.loadbalancer.server.port=80"
+        - "traefik.http.routers.pihole.service=pihole"
+
+networks:
+  public:
+    external: true
+
+volumes:
+   pihole-etc-pihole:
+   pihole-etc-dnsmasq:
+

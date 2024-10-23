@@ -1,0 +1,39 @@
+version: "3.7"
+
+# add to /home/<user>/config/homeassistant/configuration.yaml
+#
+# http:
+#  # For extra security set this to only accept connections on localhost if NGINX is on the same machine
+#  # Uncommenting this will mean that you can only reach Home Assistant using the proxy, not directly via IP from other clients.
+#  # server_host: 127.0.0.1
+#  use_x_forwarded_for: true
+#  # You must set the trusted proxy IP address so that Home Assistant will properly accept connections
+#  # Set this to your NGINX machine IP, or localhost if hosted on the same machine.
+#  trusted_proxies: <NGINX IP address here, or 127.0.0.1 if hosted on the same machine>
+
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ${HOME_DIR}/config/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    networks:
+      - public
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        # home-assistant uses lots of ressources
+        # best to run it on a powerfull host
+        constraints: [node.labels.rpi4 == true ]
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.pi-cluster.local`)"
+        - "traefik.http.routers.homeassistant.entrypoints=web"
+        - "traefik.http.services.homeassistant.loadbalancer.server.port=8123"
+        - "traefik.http.routers.homeassistant.service=homeassistant"
+
+networks:
+  public:
+    external: true
