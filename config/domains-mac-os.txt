@@ -1,0 +1,17 @@
+# Pi Cluster
+192.168.1.111   portainer.pi-cluster.local
+192.168.1.111   pihole.pi-cluster.local
+192.168.1.111   homeassistant.pi-cluster.local
+192.168.1.111   n8n.pi-cluster.local
+192.168.1.111   firefly.pi-cluster.local
+192.168.1.111   homer.pi-cluster.local
+192.168.1.111   watchtower.pi-cluster.local
+# Pi Cluster - Arr
+192.168.1.111   deluge.pi-cluster.local
+192.168.1.111   jackett.pi-cluster.local
+192.168.1.111   sonarr.pi-cluster.local
+192.168.1.111   bazarr.pi-cluster.local
+# Pi Cluster - Hosts
+192.168.1.111   manager.pi-cluster.local
+192.168.1.112   worker1.pi-cluster.local
+192.168.1.113   worker2.pi-cluster.local

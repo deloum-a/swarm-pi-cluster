@@ -31,7 +31,7 @@ services:
         constraints: [node.labels.rpi4 == true ]
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.pi-cluster.internal`)"
+        - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.pi-cluster.local`)"
         - "traefik.http.routers.homeassistant.entrypoints=web"
         - "traefik.http.services.homeassistant.loadbalancer.server.port=8123"
         - "traefik.http.routers.homeassistant.service=homeassistant"
