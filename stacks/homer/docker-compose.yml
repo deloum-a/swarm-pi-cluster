@@ -3,6 +3,8 @@ version: "3.7"
 services:
   homer:
     image: b4bz/homer:latest
+    ports:
+      - "8083:8080"
     configs:
       - source: homer-config.yml
         target: /www/assets/config.yml
