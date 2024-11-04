@@ -15,4 +15,8 @@ sudo nano /etc/hosts
 
 ```
 nano ~/.ssh/config
+
+# SCP
+scp stacks/homer/config.yml pi-cluster-manager:/home/pi/configs/
+
 ```

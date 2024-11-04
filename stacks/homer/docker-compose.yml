@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  homer:
+    image: b4bz/homer:latest
+    configs:
+      - source: homer-config.yml
+        target: /www/assets/config.yml
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.homer.rule=Host(`homer.pi-cluster.local`)"
+        - "traefik.http.routers.homer.entrypoints=web"
+        - "traefik.http.services.homer.loadbalancer.server.port=8080"
+        - "traefik.http.routers.homer.service=homer"
+
+networks:
+  public:
+    external: true
