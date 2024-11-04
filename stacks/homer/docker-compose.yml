@@ -17,7 +17,7 @@ services:
         - "traefik.http.routers.homer.service=homer"
 
 configs:
-  homer-config:
+  homer-config.yml:
     external: true
 
 networks:
