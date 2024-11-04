@@ -24,6 +24,9 @@ services:
         - "traefik.http.services.homer.loadbalancer.server.port=8080"
         - "traefik.http.routers.homer.service=homer"
 
+env_file:
+  - stack.env
+
 networks:
   public:
     external: true
