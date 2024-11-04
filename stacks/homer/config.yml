@@ -9,7 +9,7 @@
 title: "App dashboard"
 subtitle: "Homer"
 # documentTitle: "Welcome" # Customize the browser tab text
-logo: "assets/logo.png"
+logo: "assets/logo/dark_circle.png"
 # Alternatively a fa icon can be provided:
 # icon: "fas fa-skull-crossbones"
 
@@ -41,8 +41,8 @@ theme: default # 'default' or one of the themes available in 'src/assets/themes'
 
 # Optional custom stylesheet
 # Will load custom CSS files. Especially useful for custom icon sets.
-# stylesheet:
-#   - "assets/custom.css"
+stylesheet:
+  - 'assets/catppuccin-macchiato.css'
 
 # Here is the exhaustive list of customization parameters
 # However all value are optional and will fallback to default if not set.
