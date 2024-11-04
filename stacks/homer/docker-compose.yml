@@ -3,6 +3,8 @@ version: "3.7"
 services:
   homer:
     image: b4bz/homer:latest
+    env_file:
+      - stack.env
     ports:
       - 8083:8080
     volumes:
@@ -23,9 +25,6 @@ services:
         - "traefik.http.routers.homer.entrypoints=web"
         - "traefik.http.services.homer.loadbalancer.server.port=8080"
         - "traefik.http.routers.homer.service=homer"
-
-env_file:
-  - stack.env
 
 networks:
   public:
