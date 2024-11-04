@@ -16,6 +16,10 @@ services:
         - "traefik.http.services.homer.loadbalancer.server.port=8080"
         - "traefik.http.routers.homer.service=homer"
 
+configs:
+  homer-config:
+    external: true
+
 networks:
   public:
     external: true
