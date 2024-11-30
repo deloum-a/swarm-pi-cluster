@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    ports:
+      - 5678:5678
+    environment:
+      - N8N_HOST=n8n.pi-cluster.local
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - N8N_SECURE_COOKIE=false
+      - NODE_ENV=production
+      - WEBHOOK_URL=http://n8n.pi-cluster.local/
+      - GENERIC_TIMEZONE=Europe/Paris
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - n8n_files:/files
+    networks:
+      - public
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        # some services may need n8n to access their volumes
+        # this label will be use to regroup those services
+        constraints: [node.labels.n8n == true ]
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.n8n.rule=Host(`n8n.pi-cluster.local`)"
+        - "traefik.http.routers.n8n.entrypoints=web"
+        - "traefik.http.services.n8n.loadbalancer.server.port=5678"
+        - "traefik.http.routers.n8n.service=n8n"
+
+networks:
+  public:
+    external: true
+
+volumes:
+  n8n_data:
+  n8n_files:
