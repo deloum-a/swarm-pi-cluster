@@ -1,3 +1,9 @@
+# Homer
+
+https://github.com/bastienwirtz/homer
+
+https://github.com/mrpbennett/catppuccin-homer
+
 
 ### creates the assets folder on the host
 
@@ -23,10 +29,11 @@ cd assets/favicons
 unzip dark_favicon.zip
 rm *.zip
 cd -
-scp -r assets/favicons pi-cluster-node1:/home/pi/config/homer/assets
+mv assets/favicons assets/icons
+scp -r assets/icons pi-cluster-node1:/home/pi/config/homer/assets
 ```
 
 ### refresh config.yml
 ```
-
+scp stacks/homer/config.yml pi-cluster-node1:/home/pi/config/homer/assets
 ```

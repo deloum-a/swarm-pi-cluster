@@ -6,76 +6,35 @@
 # Using this will ignore remaining config in this file
 # externalConfig: https://example.com/server-luci/config.yaml
 
-title: "App dashboard"
-subtitle: "Homer"
-# documentTitle: "Welcome" # Customize the browser tab text
-logo: "assets/logo/dark_circle.png"
-# Alternatively a fa icon can be provided:
-# icon: "fas fa-skull-crossbones"
+# Default configuration
+# https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md
 
-header: true # Set to false to hide the header
-# Optional: Different hotkey for search, defaults to "/"
-# hotkey:
-#   search: "Shift"
-footer: '<p>Created with <span class="has-text-danger">❤️</span> with <a href="https://bulma.io/">bulma</a>, <a href="https://vuejs.org/">vuejs</a> & <a href="https://fontawesome.com/">font awesome</a> // Fork me on <a href="https://github.com/bastienwirtz/homer"><i class="fab fa-github-alt"></i></a></p>' # set false if you want to hide it.
+title: "Pi cluster"
+subtitle: "Homer"
+logo: "https://cdn-icons-png.flaticon.com/512/763/763754.png"
+# logo: "assets/logo/dark_circle.png"
+
+header: true
+footer: '<p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>'
 
 columns: "3" # "auto" or number (must be a factor of 12: 1, 2, 3, 4, 6, 12)
 connectivityCheck: true # whether you want to display a message when the apps are not accessible anymore (VPN disconnected for example).
                         # You should set it to true when using an authentication proxy, it also reloads the page when a redirection is detected when checking connectivity.
 
-# Optional: Proxy / hosting option
-proxy:
-  useCredentials: false # send cookies & authorization headers when fetching service specific data. Set to `true` if you use an authentication proxy. Can be overrided on service level. 
-  headers: # send custom headers when fetching service specific data. Can also be set on a service level.
-    Test: "Example"
-    Test1: "Example1"
+# # Optional: Proxy / hosting option
+# proxy:
+#   useCredentials: false # send cookies & authorization headers when fetching service specific data. Set to `true` if you use an authentication proxy. Can be overrided on service level. 
+#   headers: # send custom headers when fetching service specific data. Can also be set on a service level.
+#     Test: "Example"
+#     Test1: "Example1"
 
 
 # Set the default layout and color scheme
 defaults:
-  layout: columns # Either 'columns', or 'list'
-  colorTheme: auto # One of 'auto', 'light', or 'dark'
-
-# Optional theming
-theme: default # 'default' or one of the themes available in 'src/assets/themes'.
-
-# Optional custom stylesheet
-# Will load custom CSS files. Especially useful for custom icon sets.
+  layout: columns
+  colorTheme: dark
 stylesheet:
-  - 'assets/catppuccin-macchiato.css'
-
-# Here is the exhaustive list of customization parameters
-# However all value are optional and will fallback to default if not set.
-# if you want to change only some of the colors, feel free to remove all unused key.
-colors:
-  light:
-    highlight-primary: "#3367d6"
-    highlight-secondary: "#4285f4"
-    highlight-hover: "#5a95f5"
-    background: "#f5f5f5"
-    card-background: "#ffffff"
-    text: "#363636"
-    text-header: "#424242"
-    text-title: "#303030"
-    text-subtitle: "#424242"
-    card-shadow: rgba(0, 0, 0, 0.1)
-    link: "#3273dc"
-    link-hover: "#363636"
-    background-image: "assets/your/light/bg.png"
-  dark:
-    highlight-primary: "#3367d6"
-    highlight-secondary: "#4285f4"
-    highlight-hover: "#5a95f5"
-    background: "#131313"
-    card-background: "#2b2b2b"
-    text: "#eaeaea"
-    text-header: "#ffffff"
-    text-title: "#fafafa"
-    text-subtitle: "#f5f5f5"
-    card-shadow: rgba(0, 0, 0, 0.4)
-    link: "#3273dc"
-    link-hover: "#ffdd57"
-    background-image: "assets/your/dark/bg.png"
+  - 'assets/catppuccin-frappe.css'
 
 # Optional message
 message:
@@ -97,57 +56,79 @@ message:
   # The content also accepts HTML content, so you can add divs, images or whatever you want to make match your needs.
   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 
-# Optional navbar
-# links: [] # Allows for navbar (dark mode, layout, and search) without any links
 links:
-  - name: "Link 1"
+  - name: "Repository"
     icon: "fab fa-github"
-    url: "https://github.com/bastienwirtz/homer"
-    target: "_blank" # optional html tag target attribute
-  - name: "link 2"
-    icon: "fas fa-book"
-    url: "https://github.com/bastienwirtz/homer"
-  # this will link to a second homer page that will load config from page2.yml and keep default config values as in config.yml file
-  # see url field and assets/page.yml used in this example:
-  - name: "Second Page"
-    icon: "fas fa-file-alt"
-    url: "#page2"
+    url: "https://github.com/deloum-a/swarm-pi-cluster"
+    target: "_blank"
+  - name: "r/selfhosted"
+    icon: "fab fa-reddit-alien"
+    url: "https://www.reddit.com/r/selfhosted/"
+    target: "_blank"
+  - name: "r/homelab"
+    icon: "fab fa-reddit-alien"
+    url: "https://www.reddit.com/r/homelab/"
+    target: "_blank"
 
-# Services
-# First level array represents a group.
-# Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
 services:
-  - name: "Application"
-    icon: "fas fa-code-branch"
-    # A path to an image can also be provided. Note that icon take precedence if both icon and logo are set.
-    # logo: "path/to/logo"
-    # class: "highlight-purple" # Optional css class to add on the service group. 
+  - name: "Server"
+    icon: "fas fa-satellite"
     items:
-      - name: "Awesome app"
-        logo: "assets/tools/sample.png"
-        # Alternatively a fa icon can be provided:
-        # icon: "fab fa-jenkins"
-        subtitle: "Bookmark example"
-        tag: "app"
-        keywords: "self hosted reddit" # optional keyword used for searching purpose
-        url: "https://www.reddit.com/r/selfhosted/"
-        target: "_blank" # optional html tag target attribute
-      - name: "Another one"
-        logo: "assets/tools/sample2.png"
-        subtitle: "Another application"
-        tag: "app"
-        # Optional tagstyle
-        tagstyle: "is-success"
-        url: "#"
-  - name: "Other group"
-    icon: "fas fa-heartbeat"
-    items:
+      - name: "Portainer"
+        url: "http://portainer.pi-cluster.local/"
+        logo: "https://static-00.iconduck.com/assets.00/portainer-icon-1465x2048-t155ekm0.png"
+        tag: "server"
+        target: "_blank"
       - name: "Pi-hole"
-        logo: "assets/tools/sample.png"
-        # subtitle: "Network-wide Ad Blocking" # optional, if no subtitle is defined, PiHole statistics will be shown
-        tag: "other"
-        url: "http://192.168.0.151/admin"
-        type: "PiHole" # optional, loads a specific component that provides extra features. MUST MATCH a file name (without file extension) available in `src/components/services`
-        target: "_blank" # optional html a tag target attribute
-        # class: "green" # optional custom CSS class for card, useful with custom stylesheet
-        # background: red # optional color for card to set color directly without custom stylesheet
+        url: "http://pihole.pi-cluster.internal/admin/"
+        logo: "https://upload.wikimedia.org/wikipedia/commons/0/00/Pi-hole_Logo.png"
+        tag: "server"
+        target: "_blank"
+      - name: "Traefik"
+        url: "http://pi-cluster.local:8080/dashboard/#/"
+        logo: "https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,c_fill,w_200,h_200/https://api.charmhub.io/api/v1/media/download/charm_9jjrT5C28rJhnK4yaGUEM51nQvWR26YG_icon_72c619c767b59b9147040735ad204012f1f37e79a190054bb64ca8c83c42e0c4.png"
+        tag: "server"
+        target: "_blank"
+
+  - name: "Tools"
+    icon: "fas fa-user-astronaut"
+    items:
+      - name: "Firefly III"
+        url: "https://www.reddit.com/r/selfhosted/"
+        logo: "https://user-images.githubusercontent.com/633783/132589722-658d39a5-6700-436e-9557-18fd925712bf.png"
+        tag: "tools"
+        target: "_blank"
+      - name: "Home assistant"
+        url: "http://homeassistant.pi-cluster.local"
+        logo: "https://www.svgrepo.com/show/331429/home-assistant.svg"
+        tag: "tools"
+        target: "_blank"
+      - name: "n8n"
+        url: "https://www.reddit.com/r/selfhosted/"
+        logo: "https://avatars.githubusercontent.com/u/45487711?s=280&v=4"
+        tag: "tools"
+        target: "_blank"
+
+  - name: "Media server"
+    icon: "fas fa-meteor"
+    items:
+      - name: "Deluge"
+        url: "http://deluge.pi-cluster.local/"
+        logo: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Deluge_icon.png"
+        tag: "media"
+        target: "_blank"
+      - name: "Sonarr"
+        url: "http://sonarr.pi-cluster.local/"
+        logo: "https://static-00.iconduck.com/assets.00/sonarr-icon-2046x2048-jr5zhoo0.png"
+        tag: "media"
+        target: "_blank"
+      - name: "Jackett"
+        url: "http://jackett.pi-cluster.local/"
+        logo: "https://developer.asustor.com/uploadIcons/0020_999_1616150128_jackett_w_bg_256.png"
+        tag: "media"
+        target: "_blank"
+      - name: "Bazarr"
+        url: "http://bazarr.pi-cluster.local/"
+        logo: "https://static-00.iconduck.com/assets.00/bazarr-icon-1024x1024-r79rssva.png"
+        tag: "media"
+        target: "_blank"

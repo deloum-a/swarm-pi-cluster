@@ -11,12 +11,19 @@ sudo nano /etc/hosts
 ```
 ```
 
+# Debug DNS resolution
+
+```
+dig http://<service>.pi-cluster.local
+dig http://<service>.pi-cluster.local +trace
+```
+
 # SSH config
 
 ```
 nano ~/.ssh/config
 
 # SCP
-scp stacks/homer/config.yml pi-cluster-manager:/home/pi/configs/
 
+scp stacks/homer/config.yml pi-cluster-manager:/home/pi/configs/
 ```
